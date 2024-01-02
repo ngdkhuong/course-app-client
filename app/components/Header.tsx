@@ -75,11 +75,11 @@ const Header: FC<Props> = ({ activeItem, setOpen }) => {
                 {/* mobile sidebar */}
                 {openSidebar && (
                     <div
-                        className="fixed w-full h-screen top-[0] left-0 z-[999] dark:bg-[unset] bg-[#67676781]"
+                        className="fixed w-full h-screen top-0 left-0 z-[999] dark:bg-[unset] bg-[#67676781]"
                         onClick={handleClose}
                         id="screen"
                     >
-                        <div className="w-full fixed z-[9999]  bg-white dark:bg-slate-900 dark:bg-opacity-90 top-0 transition duration-700 ease-in-out">
+                        <div className="w-[40%] h-screen fixed z-[99999]  bg-white dark:bg-slate-900 dark:bg-opacity-90 top-0 right-0">
                             <NavItems activeItem={activeItem} isMobile={true} />
                             <HiUserCircle
                                 size={25}
