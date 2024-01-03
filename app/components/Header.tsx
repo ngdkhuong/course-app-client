@@ -7,7 +7,7 @@ import { HiUserCircle, HiMenu } from 'react-icons/hi';
 import CustomModal from '../utils/CustomModal';
 import Login from '../components/Auth/Login';
 import SignUp from '../components/Auth/SignUp';
-import Verification from "../components/Auth/Verification";
+import Verification from '../components/Auth/Verification';
 
 type Props = {
     open: boolean;
@@ -44,12 +44,12 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
             <div
                 className={`${
                     active
-                        ? 'dark:bg-opacity-50 dark:bg-gradient-to-b  dark:from-gray-900 dark:to-black dark:border-[#ffffff1c] shadow-xl'
+                        ? 'dark:bg-opacity-50 dark:bg-gradient-to-b  dark:from-gray-900 dark:to-black dark:border-[#ffffff1c] shadow-xl !bg-white'
                         : 'dark:border-[#ffffff1c] dark:shadow'
                 } fixed top-0 left-0 w-full h-[80px] z-[80] border-b transition duration-500`}
             >
                 <div className="w-[95%] md:w-[92%] m-auto py-2 h-full">
-                    <div className="w-full h-[80px] flex items-center justify-between p-3">
+                    <div className="w-full h-[80px] flex items-center justify-between p-3 ">
                         <div>
                             <Link
                                 href={'/'}

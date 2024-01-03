@@ -88,9 +88,9 @@ const SignUp: FC<Props> = ({ setRoute }) => {
                 </h5>
                 <div className="flex items-center justify-center my-3">
                     <FcGoogle size={30} className="cursor-pointer mr-2" />
-                    <AiOutlineGithub size={30} className="cursor-pointer ml-2" />
+                    <AiOutlineGithub size={30} className="cursor-pointer ml-2 dark:text-white" />
                 </div>
-                <h5 className="text-center pt-4 font-Poppins text-[14px]">
+                <h5 className="text-center pt-4 font-Poppins text-[14px] dark:text-white text-black">
                     Bạn đã có tài khoản?
                     <span className="text-blue-500 pl-1 cursor-pointer" onClick={() => setRoute('Login')}>
                         Đăng Nhập
