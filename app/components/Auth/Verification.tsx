@@ -1,7 +1,9 @@
 import { styles } from '@/app/styles/style';
-import React, { FC, useState, useRef } from 'react';
+import { useActivationMutation } from '@/redux/features/auth/authApi';
+import React, { FC, useState, useRef, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { VscWorkspaceTrusted } from 'react-icons/vsc';
+import { useSelector } from 'react-redux';
 
 type Props = {
     setRoute: (route: string) => void;
@@ -15,7 +17,26 @@ type VerifyNumber = {
 };
 
 const Verification: FC<Props> = ({ setRoute }) => {
+    const { token } = useSelector((state: any) => state.auth);
+    const [activation, { isSuccess, error }] = useActivationMutation();
     const [invalidError, setInvalidError] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success('Tài khoản đã được xác minh thành công!');
+            setRoute('Login');
+        }
+        if (error) {
+            if ('data' in error) {
+                const errorData = error as any;
+                toast.error(errorData.data.message || 'OTP không đúng!');
+                setInvalidError(true);
+            } else {
+                console.log('Lỗi không xác định: ', error);
+            }
+        }
+    }, [isSuccess, error]);
+
     const inputRefs = [
         useRef<HTMLInputElement>(null),
         useRef<HTMLInputElement>(null),
@@ -31,7 +52,15 @@ const Verification: FC<Props> = ({ setRoute }) => {
     });
 
     const verificationHandler = async () => {
-        setInvalidError(true);
+        const verificationNumber = Object.values(verifyNumber).join('');
+        if (verificationNumber.length !== 4) {
+            setInvalidError(true);
+            return;
+        }
+        await activation({
+            activation_token: token,
+            activation_code: verificationNumber,
+        });
     };
 
     const handleInputChange = (index: number, value: string) => {
