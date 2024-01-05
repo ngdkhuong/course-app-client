@@ -12,7 +12,7 @@ const Page: FC<Props> = (props) => {
     const [route, setRoute] = useState('Login');
 
     return (
-        <div>
+        <>
             <Heading
                 title="IT-EDU"
                 description="IT-EDU là nền tảng học trực tuyến cho các sinh viên theo học IT"
@@ -20,7 +20,7 @@ const Page: FC<Props> = (props) => {
             />
             <Header open={open} setOpen={setOpen} activeItem={activeItem} setRoute={setRoute} route={route} />
             <Hero />
-        </div>
+        </>
     );
 };
 
