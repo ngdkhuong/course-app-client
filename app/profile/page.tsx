@@ -24,7 +24,7 @@ const Page: FC<Props> = (props) => {
                     keywords="Programming,MERN,Machine,Graphic,Design,Learning"
                 />
                 <Header open={open} setOpen={setOpen} activeItem={activeItem} setRoute={setRoute} route={route} />
-                <Profile />
+                <Profile user={user} />
             </Protected>
         </>
     );
