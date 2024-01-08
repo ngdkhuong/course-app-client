@@ -24,9 +24,11 @@ const SideBarProfile: FC<Props> = ({ user, active, avatar, setActive, logoutHand
                 onClick={() => setActive(1)}
             >
                 <Image
-                    src={user.avatar || avatar ? user.avatar || avatar : avatarDefault}
+                    src={user.avatar || avatar ? user.avatar.url || avatar : avatarDefault}
                     alt=""
-                    className="w-[20px] h-[20px] md:w-[30px] md:h-[30px] cursor-pointer rounded-full"
+                    width={20}
+                    height={20}
+                    className="md:w-[30px] md:h-[30px] cursor-pointer rounded-full"
                 />
                 <h5 className="pl-4 md:block hidden text-black dark:text-white font-Josefin">{user.name}</h5>
             </div>
