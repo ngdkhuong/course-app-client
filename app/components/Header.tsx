@@ -10,10 +10,11 @@ import SignUp from '../components/Auth/SignUp';
 import Verification from '../components/Auth/Verification';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
-import avatar from '@/public/assets/avatar.png';
+import avatarDefault from '@/public/assets/avatar.png';
 import { useSession } from 'next-auth/react';
 import { useLogoutQuery, useSocialAuthMutation } from '@/redux/features/auth/authApi';
-import toast from 'react-hot-toast';<p></p>
+import toast from 'react-hot-toast';
+<p></p>;
 
 type Props = {
     open: boolean;
@@ -106,8 +107,8 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                             {user ? (
                                 <Link href={'/profile'}>
                                     <Image
-                                        src={user.avatar ? user.avatar : avatar}
-                                        alt=""
+                                        src={user.avatar ? user.avatar.url : avatarDefault}
+                                        alt="Avatar"
                                         width={30}
                                         height={30}
                                         className="rounded-full"
@@ -135,8 +136,8 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                             {user ? (
                                 <Link href={'/profile'}>
                                     <Image
-                                        src={user.avatar ? user.avatar : avatar}
-                                        alt=""
+                                        src={user.avatar ? user.avatar.url : avatarDefault}
+                                        alt="Avatar"
                                         width={30}
                                         height={30}
                                         className="rounded-full px-6"
