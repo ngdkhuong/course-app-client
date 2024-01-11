@@ -60,7 +60,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
 
     return (
         <>
-            <div className="mt-[100px] flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div className="flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0">
                 <div className="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
                     <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Thay Đổi Thông Tin
@@ -72,7 +72,8 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
                                 alt="Avatar"
                                 width={120}
                                 height={120}
-                                className={'rounded-full border-[3px] border-[#22fc64]'}
+                                className={'w-[120px] h-[120px] rounded-full border-[3px] border-[#22fc64]'}
+                                priority
                             />
                             <input
                                 type="file"
@@ -82,11 +83,9 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
                                 onChange={imageHandler}
                                 accept="image/png, image/jpg, image/jpeg, image/webp"
                             />
-                            <label htmlFor="avatar">
-                                <div className="w-[30px] h-[30px] bg-slate-900 rounded-full absolute bottom-2 right-2 flex items-center justify-center cursor-pointer">
-                                    <AiOutlineCamera size={20} className="z-1 text-white" />
-                                </div>
-                            </label>
+                            <div className="w-[30px] h-[30px] bg-slate-900 rounded-full absolute translate-x-[130%] translate-y-[130%] flex items-center justify-center cursor-pointer">
+                                <AiOutlineCamera size={20} className="z-1 text-white" />
+                            </div>
                         </div>
                         <div>
                             <label htmlFor="" className="block pb-2 text-black dark:text-white">

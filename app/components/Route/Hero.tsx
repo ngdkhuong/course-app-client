@@ -32,6 +32,7 @@ const Hero: FC<Props> = (props) => {
                     width={1000}
                     height={1000}
                     className="object-contain md:max-w-[90%] w-[90%] lg:max-w-[85%] h-[auto] z-[10]"
+                    priority
                 />
             </div>
         </div>

@@ -52,7 +52,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
         if (data === null) {
             setLogout(true);
         }
-    }, [data, user]);
+    }, [data, user, isSuccess, error, socialAuth]);
 
     if (typeof window !== 'undefined') {
         window.addEventListener('scroll', () => {
@@ -110,7 +110,8 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                         alt="Avatar"
                                         width={30}
                                         height={30}
-                                        className="rounded-full"
+                                        className="w-[30px] h-[30px] rounded-full"
+                                        priority
                                     />
                                 </Link>
                             ) : (
@@ -139,7 +140,8 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                         alt="Avatar"
                                         width={30}
                                         height={30}
-                                        className="rounded-full px-6"
+                                        className="w-[30px] h-[30px] rounded-full px-6"
+                                        priority
                                     />
                                 </Link>
                             ) : (
