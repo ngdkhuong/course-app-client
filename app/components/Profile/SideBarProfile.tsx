@@ -5,6 +5,8 @@ import Image from 'next/image';
 import avatarDefault from '@/public/assets/avatar.png';
 import { RiLockPasswordLine, RiLogoutBoxLine } from 'react-icons/ri';
 import { SiCoursera } from 'react-icons/si';
+import { MdAdminPanelSettings } from 'react-icons/md';
+import Link from 'next/link';
 
 type Props = {
     user: any;
@@ -50,9 +52,20 @@ const SideBarProfile: FC<Props> = ({ user, active, avatar, setActive, logoutHand
                 <SiCoursera size={20} className="text-black dark:text-white" />
                 <h5 className="pl-4 md:block hidden text-black dark:text-white font-Josefin">Khóa Học Đã Đăng Ký</h5>
             </div>
+            {user.role === 'admin' && (
+                <Link
+                    className={`w-full flex items-center px-3 py-4 cursor-pointer ${
+                        active === 6 ? 'bg-slate-200 dark:bg-slate-800' : 'bg-transparent'
+                    }`}
+                    href={'/admin'}
+                >
+                    <MdAdminPanelSettings size={20} className="text-black dark:text-white" />
+                    <h5 className="pl-4 md:block hidden text-black dark:text-white font-Josefin">Admin quản lí</h5>
+                </Link>
+            )}
             <div
                 className={`w-full flex items-center px-3 py-4 cursor-pointer ${
-                    active === 4 ? 'bg-slate-200 dark:bg-slate-800' : 'bg-transparent'
+                    active === 5 ? 'bg-slate-200 dark:bg-slate-800' : 'bg-transparent'
                 }`}
                 onClick={() => logoutHandler()}
             >
