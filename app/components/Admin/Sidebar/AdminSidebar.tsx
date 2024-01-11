@@ -48,7 +48,7 @@ const AdminSidebar = () => {
     const { user } = useSelector((state: any) => state.auth);
     const [logout, setLogout] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [selected, setSelected] = useState('Dashboard');
+    const [selected, setSelected] = useState('Quản Lý');
     const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
 
@@ -199,9 +199,79 @@ const AdminSidebar = () => {
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Hoá Đơn"
-                            to="/admin/invoices"
+                            title="Live Khóa Học"
+                            to="/admin/courses"
                             icon={<MdVideoCall />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Typography
+                            variant="h5"
+                            sx={{ m: '15px 0 5px 25px' }}
+                            className="!text-[18px] text-black dark:text-white capitalize !font-[400]"
+                        >
+                            {!isCollapsed && 'Tùy Biến'}
+                        </Typography>
+                        <Item
+                            title="Hiển Thị"
+                            to="/admin/hero"
+                            icon={<MdWeb />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Hỏi Đáp"
+                            to="/admin/faq"
+                            icon={<MdQuiz />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Loại Khóa Học"
+                            to="/admin/categories"
+                            icon={<MdOutlineWysiwyg />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Typography
+                            variant="h5"
+                            sx={{ m: '15px 0 5px 25px' }}
+                            className="!text-[18px] text-black dark:text-white capitalize !font-[400]"
+                        >
+                            {!isCollapsed && 'Quản Lý'}
+                        </Typography>
+                        <Item
+                            title="Nhóm Học"
+                            to="/admin/team"
+                            icon={<MdGroups />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Typography
+                            variant="h5"
+                            sx={{ m: '15px 0 5px 25px' }}
+                            className="!text-[18px] text-black dark:text-white capitalize !font-[400]"
+                        >
+                            {!isCollapsed && 'Biểu Đồ'}
+                        </Typography>
+                        <Item
+                            title="Biểu Đồ Khóa Học"
+                            to="/admin/courses-analytics"
+                            icon={<IoBarChartSharp />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Biểu Đồ Đơn Hàng"
+                            to="/admin/courses-analytics"
+                            icon={<CiMap />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Biểu Đồ Khách Hàng"
+                            to="/admin/users-analytics"
+                            icon={<MdOutlineManageHistory />}
                             selected={selected}
                             setSelected={setSelected}
                         />
