@@ -37,8 +37,13 @@ type itemProps = {
 
 const Item: FC<itemProps> = ({ title, to, icon, selected, setSelected }) => {
     return (
-        <MenuItem active={selected === title} onClick={() => setSelected(title)} icon={icon}>
-            <Typography className="!text-[16px] !font-Poppins">{title}</Typography>
+        <MenuItem
+            active={selected === title}
+            onClick={() => setSelected(title)}
+            icon={icon}
+            className="text-black dark:text-white items-center"
+        >
+            <Typography className="!text-[16px] !font-Poppins pl-2">{title}</Typography>
             <Link href={to} />
         </MenuItem>
     );
@@ -51,6 +56,11 @@ const AdminSidebar = () => {
     const [selected, setSelected] = useState('Quản Lý');
     const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
 
     useEffect(() => setMounted(true), []);
 
@@ -78,6 +88,7 @@ const AdminSidebar = () => {
                     color: '#6870fa !important',
                 },
                 '& .pro-inner-item': {
+                    display: 'flex',
                     padding: '5px 35px 5px 20px !important',
                     opacity: 1,
                 },
@@ -96,12 +107,13 @@ const AdminSidebar = () => {
                     height: '100vh',
                     width: isCollapsed ? '0%' : '16%',
                 }}
+                className="overflow-y-auto"
             >
                 <Menu iconShape="square">
                     {/* LOGO ABD MENU ICON */}
                     <MenuItem
                         onClick={() => setIsCollapsed(!isCollapsed)}
-                        icon={isCollapsed ? <FaArrowLeft /> : undefined}
+                        icon={isCollapsed ? <FaArrowRight /> : undefined}
                         style={{ margin: '10px 0 20px 0' }}
                     >
                         {!isCollapsed && (
@@ -112,7 +124,7 @@ const AdminSidebar = () => {
                                     </h3>
                                 </Link>
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)} className="inline-block">
-                                    <FaArrowRight className="text-black dark:text-white" />
+                                    <FaArrowLeft className="text-black dark:text-white" />
                                 </IconButton>
                             </Box>
                         )}
@@ -156,7 +168,7 @@ const AdminSidebar = () => {
 
                     <Box paddingLeft={isCollapsed ? undefined : '10%'}>
                         <Item
-                            title="Quản Lý"
+                            title="Dashboard"
                             to="/admin"
                             icon={<MdDashboard />}
                             selected={selected}
@@ -165,116 +177,157 @@ const AdminSidebar = () => {
                         <Typography
                             variant="h5"
                             sx={{ m: '15px 0 5px 25px' }}
-                            className="!text-[18px] text-black dark:text-white capitalize !font-[400]"
+                            className="relative !text-[18px] text-black dark:text-white capitalize !font-[400]"
+                            onClick={toggleDropdown}
                         >
-                            {!isCollapsed && 'Dữ liệu'}
+                            {!isCollapsed && 'Data'}
                         </Typography>
-                        <Item
-                            title="Nguời Dùng"
-                            to="/admin/users"
-                            icon={<IoPeople />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Hoá Đơn"
-                            to="/admin/invoices"
-                            icon={<IoReceipt />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
+                        {isOpen && (
+                            <>
+                                <Item
+                                    title="Nguời Dùng"
+                                    to="/admin/users"
+                                    icon={<IoPeople />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                                <Item
+                                    title="Hoá Đơn"
+                                    to="/admin/invoices"
+                                    icon={<IoReceipt />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                            </>
+                        )}
 
                         <Typography
                             variant="h5"
                             sx={{ m: '15px 0 5px 25px' }}
                             className="!text-[18px] text-black dark:text-white capitalize !font-[400]"
+                            onClick={toggleDropdown}
                         >
-                            {!isCollapsed && 'Nội Dung'}
+                            {!isCollapsed && 'Content'}
                         </Typography>
-                        <Item
-                            title="Tạo Khóa Học"
-                            to="/admin/create-course"
-                            icon={<MdOutlineOndemandVideo />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Live Khóa Học"
-                            to="/admin/courses"
-                            icon={<MdVideoCall />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
+                        {isOpen && (
+                            <>
+                                <Item
+                                    title="Tạo Khóa Học"
+                                    to="/admin/create-course"
+                                    icon={<MdOutlineOndemandVideo />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                                <Item
+                                    title="Live Khóa Học"
+                                    to="/admin/courses"
+                                    icon={<MdVideoCall />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                            </>
+                        )}
                         <Typography
                             variant="h5"
                             sx={{ m: '15px 0 5px 25px' }}
                             className="!text-[18px] text-black dark:text-white capitalize !font-[400]"
+                            onClick={toggleDropdown}
                         >
-                            {!isCollapsed && 'Tùy Biến'}
+                            {!isCollapsed && 'Costumization'}
                         </Typography>
-                        <Item
-                            title="Hiển Thị"
-                            to="/admin/hero"
-                            icon={<MdWeb />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Hỏi Đáp"
-                            to="/admin/faq"
-                            icon={<MdQuiz />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Loại Khóa Học"
-                            to="/admin/categories"
-                            icon={<MdOutlineWysiwyg />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
+                        {isOpen && (
+                            <>
+                                <Item
+                                    title="Hiển Thị"
+                                    to="/admin/hero"
+                                    icon={<MdWeb />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                                <Item
+                                    title="Hỏi Đáp"
+                                    to="/admin/faq"
+                                    icon={<MdQuiz />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                                <Item
+                                    title="Loại Khóa Học"
+                                    to="/admin/categories"
+                                    icon={<MdOutlineWysiwyg />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                            </>
+                        )}
                         <Typography
                             variant="h5"
                             sx={{ m: '15px 0 5px 25px' }}
                             className="!text-[18px] text-black dark:text-white capitalize !font-[400]"
+                            onClick={toggleDropdown}
                         >
                             {!isCollapsed && 'Quản Lý'}
                         </Typography>
-                        <Item
-                            title="Nhóm Học"
-                            to="/admin/team"
-                            icon={<MdGroups />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
+                        {isOpen && (
+                            <>
+                                <Item
+                                    title="Nhóm Học"
+                                    to="/admin/team"
+                                    icon={<MdGroups />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                            </>
+                        )}
                         <Typography
                             variant="h5"
                             sx={{ m: '15px 0 5px 25px' }}
                             className="!text-[18px] text-black dark:text-white capitalize !font-[400]"
+                            onClick={toggleDropdown}
                         >
                             {!isCollapsed && 'Biểu Đồ'}
                         </Typography>
+                        {isOpen && (
+                            <>
+                                <Item
+                                    title="Biểu Đồ Khóa Học"
+                                    to="/admin/courses-analytics"
+                                    icon={<IoBarChartSharp />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                                <Item
+                                    title="Biểu Đồ Đơn Hàng"
+                                    to="/admin/courses-analytics"
+                                    icon={<CiMap />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                                <Item
+                                    title="Biểu Đồ Khách Hàng"
+                                    to="/admin/users-analytics"
+                                    icon={<MdOutlineManageHistory />}
+                                    selected={selected}
+                                    setSelected={setSelected}
+                                />
+                            </>
+                        )}
                         <Item
-                            title="Biểu Đồ Khóa Học"
-                            to="/admin/courses-analytics"
-                            icon={<IoBarChartSharp />}
+                            title="Cài Đặt"
+                            to="/admin/settings"
+                            icon={<IoMdSettings />}
                             selected={selected}
                             setSelected={setSelected}
                         />
-                        <Item
-                            title="Biểu Đồ Đơn Hàng"
-                            to="/admin/courses-analytics"
-                            icon={<CiMap />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Biểu Đồ Khách Hàng"
-                            to="/admin/users-analytics"
-                            icon={<MdOutlineManageHistory />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
+                        <div onClick={logoutHandler}>
+                            <Item
+                                title="Đăng Xuất"
+                                to="/"
+                                icon={<IoMdExit />}
+                                selected={selected}
+                                setSelected={setSelected}
+                            />
+                        </div>
                     </Box>
                 </Menu>
             </ProSidebar>
