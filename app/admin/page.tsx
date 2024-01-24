@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Heading from '../utils/Heading';
-import AdminSidebar from '../components/Admin/Sidebar/AdminSidebar';
 import AdminProtected from '../hooks/adminProtected';
+import AdminSidebar from '../components/Admin/Sidebar/AdminSidebar';
 
 type Props = {};
 
